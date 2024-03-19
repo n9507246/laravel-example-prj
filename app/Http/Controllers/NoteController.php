@@ -12,7 +12,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-       //
+       return response('ok');
     }
 
     /**
@@ -28,7 +28,14 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'title' => 'required|string|min:5|max:255|unique:notes',
+            'body' => 'required|string|min:10'
+        ]);
+        
+        $current_user = $request->user();
+        $current_user->notes()->create($validate);
+        return redirect()->route('notes.index');
     }
 
     /**

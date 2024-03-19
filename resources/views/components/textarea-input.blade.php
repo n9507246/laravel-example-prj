@@ -8,4 +8,4 @@
             'rows' => $rows, 'cols' => $cols
         ]) 
     !!}
-></textarea>
+>{{$slot}}</textarea>
