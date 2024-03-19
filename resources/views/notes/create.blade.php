@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900"> 
                     <form method="post" action="{{ route('notes.store') }}" class="mt-6 space-y-6">
                         @csrf
+                        
                         <div>
                             <x-input-label for="title" :value="__('Title')" />
                             <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" autocomplete="title" />
