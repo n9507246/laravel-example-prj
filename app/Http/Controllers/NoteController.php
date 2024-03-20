@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class NoteController extends Controller
 {
@@ -46,6 +47,7 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
+        $this->authorize('view', $note);
         $title = 'Show note';
         return view('notes.show', compact('note', 'title'));
     }
@@ -55,7 +57,9 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        //
+        $this->authorize('update', $note);
+        $title = 'Edit note';
+        return view('notes.edit', compact('note','title'));
     }
 
     /**
@@ -63,7 +67,14 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $this->authorize('update', $note);
+        $dataNote = $request->validate([
+            'title' => ['required', 'string', 'min:5', 'max:255', Rule::unique('notes')->ignore($note->id)],
+            'body' => 'required|string|min:10'
+        ]);
+
+        $note->update($dataNote);
+        return redirect()->route('notes.show', $note->id);
     }
 
     /**
