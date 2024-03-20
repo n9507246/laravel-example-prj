@@ -13,7 +13,8 @@ class NoteController extends Controller
     public function index()
     {
         $notes = Note::whereUserId(auth()->id())->latest()->paginate(5);
-        return view('notes.index', compact('notes'));
+        $title = 'All notes';
+        return view('notes.index', compact('notes', 'title'));
     }
 
     /**
@@ -21,7 +22,8 @@ class NoteController extends Controller
      */
     public function create()
     {
-        return view('notes.create');
+        $title = "Create Note";
+        return view('notes.create', compact('title'));
     }
 
     /**
