@@ -46,7 +46,8 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        //
+        $title = 'Show note';
+        return view('notes.show', compact('note', 'title'));
     }
 
     /**

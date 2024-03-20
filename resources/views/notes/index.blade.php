@@ -19,19 +19,19 @@
                         <table class="mb-3 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-100 px-6 ">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 text-center">
                                         Note id
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 text-center">
                                         Title
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 text-center">
                                         Body
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 text-center">
                                         Created at
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 text-center">
                                         Actions
                                     </th>
                                 </tr>
@@ -39,19 +39,26 @@
                             <tbody>
                                 @forelse($notes as $note)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $note->id}}
+                                    <th scope="row" class="px-6  text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $note->id }}
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4  text-center">
                                         {{ Str::limit($note->title,30)}}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4  text-center">
                                         {{ Str::limit($note->body, 30)}}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 text-center">
                                         {{ $note->created_at->diffForHumans()}}
                                     </td>
-                                    <td class="px-6 py-4 flex gap-2">
+                                    <td class="px-6 py-4 flex justify-center gap-2">
+                                        <a href={{route('notes.show', $note->id)}}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            </svg>
+                                        </a>
+
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                         </svg>
